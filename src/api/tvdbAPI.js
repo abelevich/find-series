@@ -27,6 +27,7 @@ const createRequestConfig = (contentType="application/json") => ({
 
 const createSearchSeriesEndpoint = createEndpoint('/search/series');
 const createLoginEndpoint = createEndpoint('/login');
+const createRefreshEndpoint = createEndpoint('/refresh_token');
 
 const postAPICall = async (endpoint, parameters) => axios.post(endpoint, parameters);
 
@@ -39,5 +40,10 @@ export async function getSeries(name='last kingdom') {
 
 export async function doLogin({username, apikey, userkey}) {
   const data = await postAPICall(createLoginEndpoint(), {username, apikey, userkey});
+  return data?.data || null;
+}
+
+export async function doRefresh({token}) {
+  const data = await getAPICall(createRefreshEndpoint(), createRequestConfig());
   return data?.data || null;
 }

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { doLogin } from '../../api/tvdbAPI';
+import { doLogin, doRefresh } from '../../api/tvdbAPI';
 import {TOKEN_ID} from "../../app/constants"
 
 const initialState = {
@@ -38,6 +38,12 @@ export const loginSlice = createSlice({
       state.error = null;
       state.isAuthentificated = false;
       localStorage.removeItem(TOKEN_ID);
+    },
+    performRefresh(state, {payload}){
+      state.isLoading = false;
+      state.error = null;
+      state.isAuthentificated = true;
+      localStorage.setItem(TOKEN_ID, payload);
     }
   },
 });
@@ -60,6 +66,20 @@ export const login = ({username, apikey, userkey}) => async (dispatch) => {
     dispatch(getLoginFailure(err.toString()));
   }
 };
+
+export const refresh = () => async (dispatch) => {
+  const savedToken = localStorage.getItem(TOKEN_ID);
+
+  if (savedToken) {
+    try {
+    dispatch(getLoginStart());
+    const data = await doRefresh(savedToken);
+    dispatch(getLoginSuccess(data.token));
+    } catch (err) {
+      dispatch(getLoginFailure(err.toString()));
+    }
+  }
+}
 
 export const logout = () => (dispatch) => {
   dispatch(performLogout());
