@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     padding: "0rem 1rem",
   },
+  resultsCount: {
+    fontWeight: "bold",
+  },
   imageContainer: {
     padding: "1rem",
   },
@@ -37,7 +40,7 @@ export default ({ seriesList = [], className } = {}) => {
             display="block"
             gutterBottom
           >
-            {`Found ${resultCount} series`}
+            Found <span className={classes.resultsCount}>{resultCount}</span> results
           </Typography>
           <Divider />
         </>
