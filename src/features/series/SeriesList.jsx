@@ -31,7 +31,7 @@ export default ({ seriesList = [], className } = {}) => {
   const resultCount = seriesList.length;
 
   return (
-    <div className="series-list" className={className}>
+    <div className={className}>
       {seriesList.length > 0 && (
         <>
           <Typography

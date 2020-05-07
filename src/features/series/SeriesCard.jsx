@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: "150px",
+    height: "150px",
     flexShrink: 0
   },
   overview: {
@@ -38,11 +39,13 @@ export default function SeriesCard({
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.cover}
-        image={image}
-        title={`${seriesName} cover`}
-      />
+      <div>
+        <CardMedia
+          className={classes.cover}
+          image={image}
+          title={`${seriesName} cover`}
+        />
+      </div>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
