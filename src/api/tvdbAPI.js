@@ -21,23 +21,26 @@ const mockSeries =  { "data": [
 }
 
 const baseURL = process.env.REACT_APP_REST_BASE_URL;
+const imageBaseURL =  process.env.REACT_APP_IMAGE_BASE_URL;
+
+export const getImageUrl = (url) => `${imageBaseURL}${url}`
 
 const createEndpoint = (path) => { 
   const url = `${baseURL}${path}`; 
   return (query) => stringifyUrl({url, query})
 } 
 
-const createRequestConfig = () => ({
+const createRequestConfig = (contentType="application/json") => ({
   headers: {
     'Authorization': `Bearer ${process.env.REACT_APP_REST_TOKEN}`,
-    'Content-Type': 'application/json'
+    'Content-Type': contentType
   }
 })
+
 
 const createSearchSeriesEndpoint = createEndpoint('/search/series');
 
 const getAPICall = async (endpoint, requestConfig) => axios.get(endpoint, requestConfig);
-
 
 export async function getSeries(name='last kingdom') {
   const {data} = await getAPICall(createSearchSeriesEndpoint({name}), createRequestConfig());

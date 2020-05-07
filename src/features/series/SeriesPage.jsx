@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme)=>({
 const SeriesPage = (props) => {
   const dispatch = useDispatch();
   const onSearch = (name) => dispatch(fetchSeries(name));
-  
   const seriesList = useSelector((state) => state.series.seriesList);
   const classes = useStyles();
 

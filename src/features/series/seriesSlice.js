@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getSeries } from "../../api/tvdbAPI";
-import {trim} from 'lodash';
+import {trim, forEach} from 'lodash';
 
 function startLoading(state) {
   state.isLoading = true;
@@ -13,6 +13,7 @@ function loadingFailed(state, action) {
 
 const initialState = {
   seriesList: [],
+  images: {},
   isLoading: false,
   error: null,
 }
@@ -35,6 +36,7 @@ export const {
   getSeriesStart,
   getSeriesFailure,
   getSeriesSuccess,
+  getImage
 } = series.actions;
 
 export default series.reducer;
@@ -48,3 +50,4 @@ export const fetchSeries = (name) => async (dispatch) => {
     dispatch(getSeriesFailure(err.toString()));
   }
 };
+
