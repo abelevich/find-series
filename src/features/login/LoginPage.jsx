@@ -8,13 +8,13 @@ import { login } from "./LoginSlice";
 export default () => {
   const dispatch = useDispatch();
 
-  const onSubmitHandler = ({ username, apikey, userkey }) => {
+  const handleSubmit = ({ username, apikey, userkey }) => {
     dispatch(login({ username, apikey, userkey }));
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <LoginForm onSubmit={onSubmitHandler} />
+      <LoginForm onSubmit={handleSubmit} />
     </Container>
   );
 };

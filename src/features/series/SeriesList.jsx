@@ -7,8 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
-import Box from "@material-ui/core/Box";
-
+import SeriesCard from "./SeriesCard";
 
 const useStyles = makeStyles((theme) => ({
   results: {
@@ -16,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
     padding: "0rem 1rem",
   },
   imageContainer: {
-    padding: "1rem"
+    padding: "1rem",
   },
   image: {
     height: "150px",
-    width: "150px"
+    width: "150px",
   },
 }));
 
@@ -49,12 +48,13 @@ export default ({ seriesList = [], className } = {}) => {
           ({ id, image, seriesName, firstAired, overview, status }) => {
             return (
               <ListItem key={id}>
-                {image && (
-                  <Box className={classes.imageContainer}>
-                    <img src={getImageUrl(image)} className={classes.image} />
-                  </Box>
-                )}
-                {`${seriesName}, ${firstAired}, ${status}, ${overview}`}
+                <SeriesCard
+                  image={getImageUrl(image)}
+                  seriesName={seriesName}
+                  firstAired={firstAired}
+                  overview={overview}
+                  status={status}
+                />
               </ListItem>
             );
           }

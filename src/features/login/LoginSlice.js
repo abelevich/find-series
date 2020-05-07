@@ -17,6 +17,8 @@ function startLoading(state) {
 function loadingFailed(state, action) {
   state.isLoading = false;
   state.error = action.payload;
+  state.isAuthentificated = false;
+  localStorage.removeItem(TOKEN_ID);
 }
 
 export const loginSlice = createSlice({
@@ -31,7 +33,7 @@ export const loginSlice = createSlice({
       state.isAuthentificated = true;
       localStorage.setItem(TOKEN_ID, payload);
     },
-    logout(state) {
+    performLogout(state) {
       state.isLoading = false;
       state.error = null;
       state.isAuthentificated = false;
@@ -45,7 +47,8 @@ export default loginSlice.reducer;
 export const {
   getLoginStart,
   getLoginFailure,
-  getLoginSuccess
+  getLoginSuccess,
+  performLogout
 } = loginSlice.actions;
 
 export const login = ({username, apikey, userkey}) => async (dispatch) => {
@@ -59,5 +62,5 @@ export const login = ({username, apikey, userkey}) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-
+  dispatch(performLogout());
 } 

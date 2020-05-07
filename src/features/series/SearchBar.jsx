@@ -10,6 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import { logout } from "../login/LoginSlice";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -66,8 +67,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({onSearch}) {
+export default function SearchBar({onSearch, onLogout}) {
   const classes = useStyles();
+
   const [anchorEl, setAnchorEl] = React.useState(undefined);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(undefined);
 
@@ -86,6 +88,10 @@ export default function PrimarySearchAppBar({onSearch}) {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
+  const handleLogout = () => {
+    onLogout()
+  }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -107,7 +113,7 @@ export default function PrimarySearchAppBar({onSearch}) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 

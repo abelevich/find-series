@@ -32,19 +32,19 @@ export default ({onSubmit}) => {
   const [apikey, setApikey] = useState(undefined);
   const [userkey, setUserkey] = useState(undefined);
 
-  const onUsernameChanged = event => {
+  const handleUsernameChange = event => {
     setUsername(event.target.value)
   }
 
-  const onApiKeyChanged = event => {
+  const handleApiKeyChange = event => {
     setApikey(event.target.value)
   }
 
-  const onUserKeyChanged = event => {
+  const handleUserKeyChange = event => {
     setUserkey(event.target.value)
   }
 
-  const onClickHandler = event => {
+  const handleSubmit = event => {
     event.preventDefault();
 
     onSubmit({
@@ -75,7 +75,7 @@ export default ({onSubmit}) => {
           name="username"
           autoComplete="username"
           autoFocus
-          onChange={onUsernameChanged}
+          onChange={handleUsernameChange}
         />
         <TextField
           required
@@ -84,7 +84,7 @@ export default ({onSubmit}) => {
           id="api-key"
           label="Api Key"
           variant="outlined"
-          onChange={onApiKeyChanged}
+          onChange={handleApiKeyChange}
         />
         <TextField
           required
@@ -93,7 +93,7 @@ export default ({onSubmit}) => {
           id="user-key"
           label="User Key"
           variant="outlined"
-          onChange={onUserKeyChanged}
+          onChange={handleUserKeyChange}
         />
         <Button
           type="submit"
@@ -101,7 +101,7 @@ export default ({onSubmit}) => {
           variant="contained"
           color="primary"
           className={classes.submit}
-          onClick={onClickHandler}
+          onClick={handleSubmit}
         >
           Sign In
         </Button>
