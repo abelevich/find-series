@@ -68,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar({onSearch}) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(undefined);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(undefined);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

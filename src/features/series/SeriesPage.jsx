@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import SearchBar from "./SearchBar";
 import SeriesList from "./SeriesList";
 
-import { fetchSeries } from "./seriesSlice";
+import { fetchSeries } from "./SeriesSlice";
 
 const useStyles = makeStyles((theme)=>({
   seriesList: {
@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme)=>({
 
 const SeriesPage = (props) => {
   const dispatch = useDispatch();
-  const onSearch = (name) => dispatch(fetchSeries(name));
+  const onSearchHandler = (name) => dispatch(fetchSeries(name));
   const seriesList = useSelector((state) => state.series.seriesList);
   const classes = useStyles();
 
   return (
     <div className="series-page">
-      <SearchBar onSearch={debounce(onSearch, 300)}/>
+      <SearchBar onSearch={debounce(onSearchHandler, 300)}/>
       <SeriesList className={classes.seriesList} seriesList={seriesList} />
     </div>
   );

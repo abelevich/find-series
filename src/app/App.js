@@ -1,15 +1,21 @@
 import React from 'react';
-import SeriesPage from '../features/series/SeriesPage';
 
+import { useSelector } from "react-redux";
 import CssBaseline from '@material-ui/core/CssBaseline';
+
+import LoginPage from '../features/login/LoginPage';
+import SeriesPage from '../features/series/SeriesPage';
 
 import './App.css';
 
 function App() {
+
+  const isAuthentificated = useSelector((state) => state.login.isAuthentificated);
+
   return (
     <div className="App">
       <CssBaseline />
-      <SeriesPage/>
+      {isAuthentificated ? <SeriesPage /> : <LoginPage />}
     </div>
   );
 }
